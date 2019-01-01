@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.com/harmony1358/treesetclient.svg?branch=master)](https://travis-ci.com/harmony1358/treesetclient)
+    
 # TreeSet API client
  
 bit4mation
