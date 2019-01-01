@@ -1,0 +1,25 @@
+{
+    "defaultSeverity": "error",
+    "extends": [
+        "tslint:recommended"
+    ],
+    "jsRules": {},
+    "rules": {
+        "typedef": [true, "call-signature", "parameter", "member-variable-declaration"],
+        "no-any": false,
+        "radix": false,
+        "prefer-const":true,
+        "no-trailing-whitespace":false,
+        "no-unused-expression":false,
+        "no-var-requires": {
+            "severity": "warning"
+        },
+        "object-literal-sort-keys": false,
+        "ordered-imports": false
+    },
+    "rulesDirectory": [
+        "./src",
+        "./test",
+        "./"
+    ]
+}

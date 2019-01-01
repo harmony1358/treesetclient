@@ -1,0 +1,67 @@
+{
+  "name": "treesetclient",
+  "version": "1.0.0",
+  "description": "TreeSet API Client",
+  "main": "index.ts",
+  "scripts": {
+    "build": "tsc -d && browserify ./dist/index.js --standalone TreeSet -t [ babelify --presets [ env ] ] | uglifyjs > ./dist/treeset.min.js && cp -R assets/ dist/html && cp dist/treeset.min.js dist/html/",
+    "build-dev": "tsc -d && browserify ./dist/index.js --standalone TreeSet -t [ babelify --presets [ env ] ] > ./dist/treeset.dev.js",
+    "test": "mocha test/**/*.ts",
+    "integrate": "mocha test/**/*.ts --api http://localhost:8080/api",
+    "cover": "nyc mocha test/**/*.ts",
+    "start": "http-server ./dist/html -p 9090 -P http://localhost:8080 -o"
+  },
+  "author": "Bartosz Wójcik",
+  "license": "ISC",
+  "devDependencies": {
+    "@types/chai": "^4.0.4",
+    "@types/chai-as-promised": "^7.1.0",
+    "@types/fetch-mock": "^5.12.2",
+    "@types/jquery": "^3.3.29",
+    "@types/jstree": "^3.3.37",
+    "@types/mocha": "^2.2.44",
+    "@types/node": "^8.0.51",
+    "@types/yargs": "^10.0.1",
+    "babel-core": "^6.26.0",
+    "babel-preset-env": "^1.6.1",
+    "babelify": "^8.0.0",
+    "browserify": "^14.5.0",
+    "chai": "^4.1.2",
+    "chai-as-promised": "^7.1.1",
+    "fetch-mock": "^6.0.0-beta.2",
+    "http-server": "^0.11.1",
+    "mocha": "^4.0.1",
+    "nyc": "^11.3.0",
+    "ts-node": "^4.1.0",
+    "tslint": "^5.8.0",
+    "typescript": "^2.6.2",
+    "uglify-js": "^3.3.4",
+    "yargs": "^10.1.1"
+  },
+  "dependencies": {
+    "es6-promise": "^4.2.2",
+    "isomorphic-fetch": "^2.2.1",
+    "jquery": "^3.3.1",
+    "jstree": "^3.3.7"
+  },
+  "nyc": {
+    "extension": [
+      ".ts",
+      ".tsx"
+    ],
+    "exclude": [
+      "**/*.d.ts",
+      "node_modules",
+      "dist",
+      "assets",
+      "coverage",
+      "test",
+      "./"
+    ],
+    "reporter": [
+      "lcov",
+      "text"
+    ],
+    "all": true
+  }
+}
