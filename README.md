@@ -66,6 +66,17 @@ npm test
 npm run cover
 ```  
   
+### Integration testing  
+  
+You can perform integration tests adding "--api" parameter to test commands.  
+API mocking feature is then disabled and all tests are performed against live system.  
+  
+yarn:  
+`yarn test --api http://some.server.com/api`  
+  
+npm:  
+`npm test --api http://some.server.com/api`  
+  
 ### CI
   
 Project uses [Travis-CI](https://travis-ci.org/) for Continuous Integration and deployment.  
