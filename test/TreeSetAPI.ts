@@ -23,9 +23,69 @@ describe ("TreeSetAPI", () => {
 
     });
 
-    it ("Should return ITreeNode[] Promise when calling getNodes", () => {
+    it ("Should properly set apiEndpoint", () => {
+
+        treeSetAPI.apiEndpoint = apiEndpoint;
+        expect(treeSetAPI.apiEndpoint).to.be.equal(apiEndpoint);
+
+    });
+
+    it ("Should return ITreeNode[] Promise when calling getNodes for Root node", () => {
 
         return treeSetAPI.getNodes(null)
+                .catch ((error) => {
+                    assert.isNotOk (error, "Promise rejected");
+                });
+
+    });
+
+    it ("Should return ITreeNode[] Promise when calling getNodes for child node", () => {
+
+        return treeSetAPI.getNodes(1)
+                .then ((result: TreeSet.ITreeNode[]) => {
+                    result.map((node) => expect(Number.isInteger(node.parentId)).to.be.true);
+                })
+                .catch ((error) => {
+                    assert.isNotOk (error, "Promise rejected");
+                });
+
+    });
+
+    it ("Should return ITreeNode Promise with id set for create action", () => {
+
+        return treeSetAPI.create({
+            id: null,
+            number: 10,
+            parentId: null,
+        }).then ((result: TreeSet.ITreeNode) => {
+
+            expect(Number.isInteger(result.id)).to.be.true;
+        
+        }).catch ((error) => {
+            assert.isNotOk (error, "Promise rejected");
+        });
+
+    });
+
+    it ("Should resolve update Promise", () => {
+
+        return treeSetAPI.update({
+            id: 1,
+            number: 10,
+            parentId: null,
+        }).then ((result: TreeSet.ITreeNode) => {
+
+            expect(result.number).to.be.equal(10);
+        
+        }).catch ((error) => {
+            assert.isNotOk (error, "Promise rejected");
+        });
+
+    });
+
+    it ("Should resolve delete promise", () => {
+
+        return treeSetAPI.delete(1)
                 .catch ((error) => {
                     assert.isNotOk (error, "Promise rejected");
                 });
