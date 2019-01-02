@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html>
     <head>
+        <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jstree/3.2.1/themes/default/style.min.css" />
         <link href="styles.css" rel="stylesheet"/>
 
@@ -9,11 +10,22 @@
     </head>
     <body>
         <div id="stage">
+            <div id="header">
+                <strong>bit4mation</strong> - TreeSet project
+            </div>
             <div id="main">
                 <div class="panel">
                     <div id="tree"></div>
                 </div>
-                <div class="panel"></div>
+                <div class="panel">
+                    Node name = a (b)<br/>
+                    <strong>a </strong> = stored node number<br/>
+                    <strong>b </strong> = sum of numbers on path to Root node<br/><br/>
+                    <strong>Create child</strong> - right click and select "Create child"<br/><br/>
+                    <strong>Edit number</strong> - right click and select "Edit number"<br/><br/>
+                    <strong>Delete branch</strong> - right click and select "Delete branch"<br/><br/>
+                    <strong>Move branch</strong> - drag branch to new parent node
+                </div>
             </div>
         </div>
         <script type="text/javascript" src="./treeset.min.js"></script>
