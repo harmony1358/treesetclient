@@ -65,8 +65,16 @@ export default class TreeSetController {
     public editAction(ref: any): void {
 
         const node: INode = $("#tree").jstree(true).get_node(ref.reference);
+
+        if (node.original.id === "null") { 
+            
+            alert("Cannot edit Root node!"); 
+            return;
+        
+        }
+
         const num: number = node.original.number;
-        const newNum = parseInt( prompt( "Enter new number", num + ""));
+        const newNum: number = parseInt( prompt( "Enter new number", num + ""));
 
         if (isNaN(newNum)) { alert("Wprowadź liczbę!"); return; }
 
@@ -77,8 +85,8 @@ export default class TreeSetController {
             })
             .then ( (response) => {
 
-                const parentNode = $("#tree").jstree(true).get_node(node.parent);
-                const compNumber = parentNode.original.compNumber + response.number;
+                const parentNode: INode = $("#tree").jstree(true).get_node(node.parent);
+                const compNumber: number = parentNode.original.compNumber + response.number;
 
                 node.original.number = response.number;
                 node.original.compNumber = compNumber;
@@ -94,6 +102,13 @@ export default class TreeSetController {
 
         const node: INode = $("#tree").jstree(true).get_node(ref.reference);
         const parentNode: INode = $("#tree").jstree(true).get_node(node.parent);
+
+        if (parentNode.id === "#") { 
+            
+            alert("Cannot delete Root node!"); 
+            return;
+        
+        }
 
         this.api.delete(parseInt(node.original.id))
             .then (() => $("#tree").jstree(true).refresh_node(parentNode));
