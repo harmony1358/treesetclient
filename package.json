@@ -2,13 +2,14 @@
   "name": "treesetclient",
   "version": "1.0.0",
   "description": "TreeSet API Client",
-  "main": "index.ts",
+  "main": "dist/index.js",
   "scripts": {
     "build": "tsc -d && browserify ./dist/index.js --standalone TreeSet -t [ babelify --presets [ env ] ] | uglifyjs > ./dist/treeset.min.js && cp -R assets/ dist/html && cp dist/treeset.min.js dist/html/",
     "build-dev": "tsc -d && browserify ./dist/index.js --standalone TreeSet -t [ babelify --presets [ env ] ] > ./dist/treeset.dev.js",
     "test": "mocha test/**/*.ts",
     "integrate": "mocha test/**/*.ts --api http://localhost:8080/api",
     "cover": "nyc mocha test/**/*.ts",
+    "coveralls": "nyc --reporter=text-lcov mocha test/**/*.ts | coveralls",
     "start": "http-server ./dist/html -p 9090 -P http://localhost:8080 -o"
   },
   "author": "Bartosz Wójcik",
@@ -28,6 +29,7 @@
     "browserify": "^14.5.0",
     "chai": "^4.1.2",
     "chai-as-promised": "^7.1.1",
+    "coveralls": "^3.0.2",
     "fetch-mock": "^6.0.0-beta.2",
     "http-server": "^0.11.1",
     "mocha": "^4.0.1",
@@ -49,14 +51,9 @@
       ".ts",
       ".tsx"
     ],
-    "exclude": [
-      "**/*.d.ts",
-      "node_modules",
-      "dist",
-      "assets",
-      "coverage",
-      "test",
-      "./"
+    "include": [
+      "src/**/*.ts",
+      "src/**/*.tsx"
     ],
     "reporter": [
       "lcov",

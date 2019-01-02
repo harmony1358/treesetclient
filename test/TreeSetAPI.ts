@@ -23,9 +23,12 @@ describe ("TreeSetAPI", () => {
 
     });
 
-    it ("SHould return ITreeNode[] Promise when calling getNodes", () => {
+    it ("Should return ITreeNode[] Promise when calling getNodes", () => {
 
-        return treeSetAPI.getNodes(null);
+        return treeSetAPI.getNodes(null)
+                .catch ((error) => {
+                    assert.isNotOk (error, "Promise rejected");
+                });
 
     });
 
