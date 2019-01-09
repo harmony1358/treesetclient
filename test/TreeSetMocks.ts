@@ -55,7 +55,7 @@ export const mockServer = () => {
 
     );  
 
-    fetchMock.post("https://treeset-endpoint/api/update", 
+    fetchMock.put("https://treeset-endpoint/api/update", 
     
         { 
             id: 4, 
@@ -64,8 +64,8 @@ export const mockServer = () => {
         },
 
     );
-
-    fetchMock.post("https://treeset-endpoint/api/delete/1", {});
+    
+    fetchMock.delete("https://treeset-endpoint/api/delete/1", {});
 };
 
 export const restore = () => {

@@ -27,8 +27,8 @@ class TreeSetAPI {
 
     public update(node: ITreeNode): Promise<ITreeNode> {
 
-        return fetch (this.API_ENDPOINT + "/create", {
-            method: "post",
+        return fetch (this.API_ENDPOINT + "/update", {
+            method: "put",
             headers: new Headers({"Content-Type": "application/json"}),
             body: JSON.stringify(node),
         }).then( (response: Response) => response.json() as Promise<ITreeNode> );
@@ -37,7 +37,7 @@ class TreeSetAPI {
     
     public delete(id: number): Promise<string> {
         return fetch (this.API_ENDPOINT + "/delete/" + id, {
-            method: "post",
+            method: "delete",
             headers: new Headers({contentType: "application/json"}),
         }).then( (response: Response) => response.text() as Promise<string> );
     }
